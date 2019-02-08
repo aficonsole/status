@@ -1,6 +1,5 @@
 <?php
-
-$auth = '';
+$auth = $_ENV['SHINKEN_AUTH'];
 $url = 'https://shinken.mrphp.com.au/thruk/cgi-bin/status.cgi?view_mode=json';
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
