@@ -1,6 +1,6 @@
 <?php
 $auth = $_ENV['SHINKEN_AUTH'];
-$url = 'https://shinken.mrphp.com.au/thruk/cgi-bin/status.cgi?view_mode=json';
+$url = $_ENV['SHINKEN_URL'];
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_USERPWD, $auth);
@@ -555,10 +555,13 @@ curl_close($ch);
                 <?php
                 foreach ($group as $service) {
                     if ($service['state_type'] == 0) {
-                    } elseif ($service['state'] == 0) {
                         $tag = 'maintenance';
                         $state = 'PENDING';
                         $color = '#AAAAAA';
+                    } elseif ($service['state'] == 0) {
+                        $tag = 'ok';
+                        $state = 'OK';
+                        $color = '#2FCC66';
                     } elseif ($service['state'] == 1) {
                         $tag = 'minor';
                         $state = 'WARNING';
