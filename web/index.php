@@ -590,6 +590,7 @@ curl_close($ch);
     ?>
 </div>
 
+<?php /* ?>
 <footer class="siteFooter">
     <div class="container">
         <ul class="siteFooter__nav">
@@ -601,6 +602,7 @@ curl_close($ch);
         </p>
     </div>
 </footer>
+<?php */ ?>
 
 </body>
 </html>
