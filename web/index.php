@@ -1,9 +1,7 @@
 <?php
-$auth = $_ENV['SHINKEN_AUTH'];
-$url = $_ENV['SHINKEN_URL'];
-$ch = curl_init($url);
+$ch = curl_init($_ENV['SHINKEN_URL']);
+curl_setopt($ch, CURLOPT_USERPWD, $_ENV['SHINKEN_AUTH']);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_USERPWD, $auth);
 curl_setopt($ch, CURLOPT_USERAGENT, 'curl');
 $services = json_decode(curl_exec($ch), true);
 curl_close($ch);
@@ -554,14 +552,16 @@ curl_close($ch);
             <ul class="serviceList serviceGroup__list">
                 <?php
                 foreach ($group as $service) {
-                    if ($service['state_type'] == 0) {
-                        $tag = 'maintenance';
-                        $state = 'PENDING';
-                        $color = '#AAAAAA';
-                    } elseif ($service['state'] == 0) {
-                        $tag = 'ok';
-                        $state = 'OK';
-                        $color = '#2FCC66';
+                    if ($service['state'] == 0) {
+                        if ($service['state_type'] == 0) {
+                            $tag = 'maintenance';
+                            $state = 'PENDING';
+                            $color = '#AAAAAA';
+                        } else {
+                            $tag = 'ok';
+                            $state = 'OK';
+                            $color = '#2FCC66';
+                        }
                     } elseif ($service['state'] == 1) {
                         $tag = 'minor';
                         $state = 'WARNING';
