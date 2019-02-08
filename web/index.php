@@ -554,10 +554,11 @@ curl_close($ch);
             <ul class="serviceList serviceGroup__list">
                 <?php
                 foreach ($group as $service) {
-                    if ($service['state'] == 0) {
-                        $tag = 'ok';
-                        $state = 'OK';
-                        $color = '#2FCC66';
+                    if ($service['state_type'] == 0) {
+                    } elseif ($service['state'] == 0) {
+                        $tag = 'maintenance';
+                        $state = 'PENDING';
+                        $color = '#AAAAAA';
                     } elseif ($service['state'] == 1) {
                         $tag = 'minor';
                         $state = 'WARNING';
@@ -590,7 +591,6 @@ curl_close($ch);
     ?>
 </div>
 
-<?php /* ?>
 <footer class="siteFooter">
     <div class="container">
         <ul class="siteFooter__nav">
@@ -602,7 +602,6 @@ curl_close($ch);
         </p>
     </div>
 </footer>
-<?php */ ?>
 
 </body>
 </html>
