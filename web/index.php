@@ -533,10 +533,12 @@ curl_close($ch);
 
     <?php
     $groupMap = [
-        'afi.ink db' => 'Main Services',
+        'afi.ink host1' => 'Main Services',
         'afi.ink www' => 'Main Services',
-        'afi.ink host1' => '_Failover Services',
+        'afi.ink host2' => '_Failover Services',
+        'afi.ink cms' => '__CMS',
         'afi.ink v3' => '__Version3 (historical)',
+        'afi.ink archive' => '__Archive',
     ];
 
     $groups = [];

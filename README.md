@@ -8,3 +8,11 @@ https://dashboard.heroku.com/apps/afi-status
 The application is connected (auto-deployed) from this repository:
 
 https://github.com/aficonsole/status
+
+
+## Standalone Webserver
+
+```
+cd web/
+php -S localhost:8000
+```
